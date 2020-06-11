@@ -1,0 +1,25 @@
+<h2>User Detils</h2>
+
+<div class="card card-header results-block">
+  <table class="col-md-12">
+    <tbody>
+    <tr>
+      <td><strong>Name: </strong><%= @user.full_name %></td>
+      <td><strong>Email: </strong><%= @user.email %></td>
+      <td>
+      <% if current_user.already_friends?(@user.id) %>
+        <td><span class="badge badge-secondary"> Already following</span></td>
+      <% else %>
+        <td><%= link_to 'Start following', friendships_path(friend: @user), class: 'btn btn-sm btn-success', method: :post %></td>
+      <% end %>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<% if !@tracked_stock.empty? %>
+  <%= render 'stocks/stock_table' %>
+<% else %>
+  <div class="searh-area">
+    This user is not following any stocks
+  </div>
+<% end %>
